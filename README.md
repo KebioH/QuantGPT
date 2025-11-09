@@ -1,12 +1,13 @@
+```text
 QuantGPT/
 │
 ├── demo.py          # 載入股票資料、計算技術與情緒分數，呼叫 OpenAI 生成投資建議
 ├── backtest.py      # 模擬策略的歷史表現，輸出資產曲線與買賣訊號圖
 ├── app.py           # 啟動後可在本地端以瀏覽器互動式使用
 ├── NVDA.csv         # 歷史股價
-├── backtest1.png     # 近兩年策略回測圖（初始資金 10000，每週執行一次策略）
-├── backtest2.png     # 買賣歷史記錄圖
-└── README       
+├── backtest1.png    # 近兩年策略回測圖（初始資金 10000，每週執行一次策略）
+├── backtest2.png    # 買賣歷史記錄圖
+└── README.md        # 專案說明文件
 
 
 買入邏輯：當分數達到門檻時買入1股
