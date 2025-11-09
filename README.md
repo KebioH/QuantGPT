@@ -4,6 +4,7 @@ QuantGPT/
 ├── demo.py          # 載入股票資料、計算技術與情緒分數，呼叫 OpenAI 生成投資建議
 ├── backtest.py      # 模擬策略的歷史表現，輸出資產曲線與買賣訊號圖
 ├── app.py           # 啟動後可在本地端以瀏覽器互動式使用
+├── montecarlo.py    # 蒙地卡羅模擬200筆隨機w1, w2並跑回測
 ├── NVDA.csv         # 歷史股價
 ├── backtest1.png    # 近兩年策略回測圖（初始資金 10000，每週執行一次策略）
 ├── backtest2.png    # 買賣歷史記錄圖
