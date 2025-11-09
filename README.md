@@ -8,7 +8,7 @@ QuantGPT/
 ├── NVDA.csv         # 歷史股價
 ├── backtest1.png    # 近兩年策略回測圖（初始資金 10000，每週執行一次策略）
 ├── backtest2.png    # 買賣歷史記錄圖
-└── README.md        # 專案說明文件
+└── README.md        
 
 
 買入邏輯：當分數達到門檻時買入1股
