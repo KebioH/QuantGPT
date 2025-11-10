@@ -4,18 +4,18 @@ from transformers import pipeline
 import pandas as pd
 from openai import OpenAI
 
-# ================== 參數設定 ==================
-CSV_PATH   = r"NVDA.csv"   # 股票資料 CSV 路徑
-STOCK_NAME = "NVDA"        # 股票代號
-QUERY      = "NVDA"        # 新聞查詢字串
-N_NEWS     = 90            # 想抓的新聞篇數
-W1, W2     = 0.6, 0.4      # 技術面 / 情緒面 權重
+
+CSV_PATH   = r"NVDA.csv"   
+STOCK_NAME = "NVDA"       
+QUERY      = "NVDA"        
+N_NEWS     = 90            
+W1, W2     = 0.6, 0.4      
 
 
 client = OpenAI()
 
 
-# ================== 原本的技術與情緒函式 ==================
+
 def load_close_series(csv_path=CSV_PATH, lookback_days=1500):
     df = pd.read_csv(csv_path)
     date_col = None
@@ -132,7 +132,7 @@ def explain_with_llm(user_query, stock_name, tech_detail,
     """
     把指標與最終決策丟給 ChatGPT，請它用中文整理成解釋與建議。
     """
-    # 整理成乾淨的文字 prompt
+  
     tech_block = (
         f"MA_signal: {tech_detail['MA_signal']}\n"
         f"RSI_value: {tech_detail['RSI_value']}\n"
@@ -188,7 +188,7 @@ def explain_with_llm(user_query, stock_name, tech_detail,
     return response.output_text
 
 
-# ================== 主流程 ==================
+
 def main():
     user_query = input(f"請輸入你對 {STOCK_NAME} 的問題\n>> ")
 
@@ -206,16 +206,16 @@ def main():
     print(result["explanation"])
 
 
-# ================== 封裝成共用函式 ==================
+
 def run_analysis(user_query: str):
-    # 1. 技術分析
+
     tech_score, tech_detail = compute_technical_score()
 
-    # 2. 新聞 + FinBERT 情緒
+
     titles = fetch_titles()
     sentiment_index, counts, samples = finbert_sentiment_index(titles)
 
-    # 3. 加權分數 & 機器決策
+
     buy_score = W1 * tech_score + W2 * sentiment_index
 
     def decision(score, buy_th=50, sell_th=30):
@@ -227,7 +227,7 @@ def run_analysis(user_query: str):
 
     action = decision(buy_score)
 
-    # 4. 呼叫 ChatGPT 產生說明
+
     explanation = explain_with_llm(
         user_query=user_query,
         stock_name=STOCK_NAME,
@@ -241,7 +241,7 @@ def run_analysis(user_query: str):
         w2=W2,
     )
 
-    # 回傳所有結果給外面用（網頁或 CLI 都可以共用）
+
     return {
         "tech_score": tech_score,
         "tech_detail": tech_detail,
