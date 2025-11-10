@@ -9,7 +9,7 @@ QuantGPT/
 ├── backtest_result
 │   ├─ backtest1.png # 近兩年策略回測圖（初始資金 10000，每週執行一次策略）
 │   └─ backtest2.png # 買賣歷史記錄圖
-├── demo.mp4         #瀏覽器效果演示
+├── demo.mp4         # 效果演示
 └── README.md        
 
 
