@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template_string, url_for, send_from_directory
-from demo import run_analysis, STOCK_NAME   # 從 demo.py 匯入剛剛寫的函式
+from demo import run_analysis, STOCK_NAME
 
 app = Flask(__name__)
 
@@ -100,7 +100,7 @@ def index():
     user_query = ""
     result = None
     tech_detail_text = ""
-    image_files = []  # 預設沒有圖片
+    image_files = []
 
     if request.method == "POST":
         user_query = request.form.get("q", "").strip()
@@ -115,7 +115,6 @@ def index():
                 f"TechScore : {td['TechScore']}"
             )
 
-            # ✅ 只在有輸入問題時才載入圖片
             candidate_imgs = ["demo.png", "backtest1.png", "backtest2.png"]
             image_files = [name for name in candidate_imgs if os.path.exists(name)]
 
@@ -129,7 +128,6 @@ def index():
     )
 
 
-# 提供圖片的路由（從目前目錄送檔案出去）
 @app.route("/images/<path:filename>")
 def image_file(filename):
     # '.' 表示 app.py 所在的資料夾
