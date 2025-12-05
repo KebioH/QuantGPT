@@ -1,21 +1,28 @@
 ```text
 QuantGPT/
+|
+├── historical_price/        # 存放多支股票歷史價格.csv
+├── sentiment_cache/         # 過往日期情緒分析建表.csv
+├── montecarlo_result/       # 蒙地卡羅模擬輸出
 │
-├── demo.py          # 載入股票資料、計算技術與情緒分數，呼叫 OpenAI 生成投資建議
-├── backtest.py      # 模擬策略的歷史表現，輸出資產曲線與買賣訊號圖
-├── app.py           # 啟動後可在本地端以瀏覽器互動式使用
-├── montecarlo.py    # 蒙地卡羅模擬200筆隨機w1, w2並跑回測
-├── NVDA.csv         # 歷史股價
-├── backtest_result
-│   ├─ backtest1.png # 近兩年策略回測圖（初始資金 10000，每週執行一次策略）
-│   └─ backtest2.png # 買賣歷史記錄圖
-├── demo.mp4         # 效果演示
-└── README.md        
+├── app.py                   # Flask前後端整合，執行此檔即可開啟網頁介面和所有功能
+│
+├── demo.py                  # 計算技術面/情緒面並生成LLM分析報告，有需要再執行
+│
+├── montecarlo.py            # 蒙地卡羅分析，有需要再執行
+│
+├── backtest.py              # 不需執行
+├── sentiment_cache.py       # 不需執行
+├── config.py                # 不需執行
+│
+└── README.md
+
 
 
 買入邏輯：當分數達到門檻時買入1股
+
 賣出邏輯：觸發賣出訊號時全數清倉
 
-未來的訓練方向
-    股價波動自動調整交易權重
-    W1, W2參數最佳化
+代辦事項
+    股價波動自動調整交易權重
+    W1, W2參數自動最佳化
