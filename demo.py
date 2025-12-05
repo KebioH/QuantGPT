@@ -3,20 +3,20 @@ from gnews import GNews
 from transformers import pipeline
 import pandas as pd
 from openai import OpenAI
+import config
 
-
-CSV_PATH   = r"NVDA.csv"   
-STOCK_NAME = "NVDA"       
-QUERY      = "NVDA"        
+CSV_PATH = os.path.join("historical_price", rf"{config.STOCK_SYMBOL}.csv")
+STOCK_NAME = config.STOCK_SYMBOL
+QUERY = config.STOCK_SYMBOL       
 N_NEWS     = 90            
-W1, W2     = 0.6, 0.4      
+W1, W2     = 0.65, 0.35      
 
 
 client = OpenAI()
 
 
 
-def load_close_series(csv_path=CSV_PATH, lookback_days=1500):
+def load_close_series(csv_path, lookback_days=1500):
     df = pd.read_csv(csv_path)
     date_col = None
     for c in df.columns:
