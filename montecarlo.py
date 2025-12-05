@@ -2,8 +2,10 @@ import random
 import pandas as pd
 import matplotlib.pyplot as plt
 from backtest import backtest_weekly, sentiment_for_date
+import config
+import os
 
-CSV_PATH = "NVDA.csv"
+CSV_PATH = os.path.join("historical_price", rf"{config.STOCK_SYMBOL}.csv")   
 N_RUNS = 200
 INITIAL_CAPITAL = 10000
 
@@ -42,9 +44,7 @@ def main():
     print("\n=== ROI 統計 ===")
     print(df["roi_pct"].describe())
 
-    # -----------------------------
-    # 1️⃣ ROI 分布圖
-    # -----------------------------
+    # ROI分布圖
     plt.figure(figsize=(7, 4))
     plt.hist(df["roi_pct"], bins=20, color="#4CAF50", edgecolor="black", alpha=0.8)
     plt.title("Distribution of ROI (%)", fontsize=14)
@@ -52,12 +52,10 @@ def main():
     plt.ylabel("Frequency")
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig("montecarlo_roi_distribution.png", dpi=150)
+    plt.savefig(os.path.join("montecarlo_result/roi_distribution", rf"{config.STOCK_SYMBOL}.png")  , dpi=150)
     plt.show()
 
-    # -----------------------------
-    # 2️⃣ ROI vs W1 散點圖
-    # -----------------------------
+    # ROI vs W1 散點圖
     plt.figure(figsize=(7, 4))
     plt.scatter(df["w1"], df["roi_pct"], alpha=0.7, c=df["roi_pct"], cmap="viridis", edgecolors="black")
     plt.title("ROI vs W1 (W2 = 1 - W1)", fontsize=14)
@@ -66,7 +64,7 @@ def main():
     plt.grid(alpha=0.3)
     plt.colorbar(label="ROI (%)")
     plt.tight_layout()
-    plt.savefig("montecarlo_roi_vs_w1.png", dpi=150)
+    plt.savefig(os.path.join("montecarlo_result/roi_vs_w1", rf"{config.STOCK_SYMBOL}.png")  , dpi=150)
     plt.show()
 
 if __name__ == "__main__":
