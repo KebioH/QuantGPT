@@ -1,6 +1,8 @@
 flask
-gunicorn
 pandas
 matplotlib
 gnews
-numpy
+transformers
+torch
+openai
+gunicorn
