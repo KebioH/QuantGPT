@@ -4,7 +4,7 @@ QuantGPT/
 ├── historical_price/        # 存放多支股票歷史價格.csv
 ├── sentiment_cache/         # 過往日期情緒分析建表.csv
 ├── montecarlo_result/       # 蒙地卡羅模擬輸出
-├── static/backtests/	       # 儲存來自app.py回測輸出的圖表檔案
+├── static/backtests/	     # 儲存來自app.py回測輸出的圖表檔案
 │
 ├── app.py                   # Flask前後端整合，執行此檔即可開啟網頁介面和所有功能
 │
